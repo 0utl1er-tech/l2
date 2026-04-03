@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エルニ｜LINE・Google・SNS集客サポート</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1D4ED8;
+            --primary-light: #3B82F6;
+            --primary-bg: #EFF6FF;
+            --accent: #F97316;
+            --accent-dark: #EA580C;
+            --line-green: #06C755;
+            --dark: #111827;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --border: #E5E7EB;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.7;
+        }
+
+        /* ─── Navigation ─────────────────────────────── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--accent); }
+        .nav-cta {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--accent-dark); }
+
+        /* ─── Hero ───────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 55%, #FFF7ED 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 110px 24px 70px;
+            text-align: center;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FEF3C7;
+            color: #92400E;
+            border: 1px solid #FCD34D;
+            padding: 6px 18px;
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-size: clamp(28px, 5vw, 52px);
+            font-weight: 900;
+            line-height: 1.35;
+            margin-bottom: 16px;
+        }
+        .hero-title .accent-text { color: var(--primary); }
+        .hero-subtitle {
+            font-size: clamp(14px, 2vw, 17px);
+            color: var(--gray);
+            margin-bottom: 36px;
+            max-width: 560px;
+            line-height: 1.8;
+        }
+        .hero-price-box {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 16px 36px;
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+        .hero-price-box .pl { font-size: 12px; color: var(--gray); }
+        .hero-price-box .pm {
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+        .hero-price-box .pm span { font-size: 14px; font-weight: 500; color: var(--gray); }
+        .hero-price-box .ps { font-size: 13px; color: var(--gray); margin-top: 2px; }
+
+        .branch-lead {
+            font-size: 15px;
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .branch-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            max-width: 500px;
+        }
+        .btn-branch {
+            padding: 20px 28px;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.25s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .btn-branch-a { background: var(--primary); color: white; }
+        .btn-branch-a:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(29,78,216,0.3);
+        }
+        .btn-branch-b {
+            background: var(--white);
+            color: var(--dark);
+            border: 2px solid var(--border);
+        }
+        .btn-branch-b:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .btn-branch-label { display: flex; flex-direction: column; gap: 4px; }
+        .btn-branch-tag { font-size: 11px; font-weight: 500; opacity: 0.7; }
+        .btn-branch-arrow { font-size: 22px; flex-shrink: 0; }
+
+        /* ─── Features Bar ───────────────────────────── */
+        .features-bar {
+            background: var(--primary);
+            color: white;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .fi {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .fi-icon { font-size: 18px; }
+
+        /* ─── Sections A / B toggle ──────────────────── */
+        .section-a, .section-b { display: none; }
+        .section-a.active, .section-b.active {
+            display: block;
+            animation: fadeUp 0.45s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Section wrapper ────────────────────────── */
+        .sec { padding: 80px 24px; }
+        .sec-inner { max-width: 960px; margin: 0 auto; }
+        .sec-tag {
+            display: inline-block;
+            background: var(--primary-bg);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 24px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+        .sec-title {
+            font-size: clamp(22px, 4vw, 38px);
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .sec-sub {
+            font-size: 15px;
+            color: var(--gray);
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+
+        /* ─── Back button ────────────────────────────── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 28px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* ─── Pain cards ─────────────────────────────── */
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+        .pain-card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .pain-icon { font-size: 22px; flex-shrink: 0; }
+        .pain-text { font-size: 14px; font-weight: 500; line-height: 1.6; }
+        .pain-resolution {
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .pain-resolution h3 { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+        .pain-resolution p { font-size: 14px; opacity: 0.9; }
+
+        /* ─── Service cards ──────────────────────────── */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .service-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.25s;
+        }
+        .service-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 32px rgba(29,78,216,0.1);
+            transform: translateY(-4px);
+        }
+        .svc-icon { font-size: 44px; margin-bottom: 14px; }
+        .svc-name { font-size: 18px; font-weight: 900; margin-bottom: 8px; }
+        .svc-desc { font-size: 13px; color: var(--gray); margin-bottom: 18px; line-height: 1.65; }
+        .svc-price { font-size: 30px; font-weight: 900; color: var(--primary); }
+        .svc-price span { font-size: 13px; font-weight: 500; color: var(--gray); }
+        .svc-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 16px;
+        }
+        .svc-features li {
+            font-size: 13px;
+            padding: 7px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .svc-features li:last-child { border-bottom: none; }
+        .svc-features li::before {
+            content: "\2713";
+            color: var(--primary);
+            font-weight: 900;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ─── Bundle ─────────────────────────────────── */
+        .bundle-card {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 44px 40px;
+            text-align: center;
+        }
+        .bundle-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 18px;
+            border-radius: 24px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .bundle-title { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+        .bundle-price { font-size: 52px; font-weight: 900; margin-bottom: 4px; line-height: 1; }
+        .bundle-price-sub { font-size: 13px; opacity: 0.8; margin-bottom: 20px; }
+        .bundle-note {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 12px 24px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* ─── Specialist box ─────────────────────────── */
+        .specialist-box {
+            background: linear-gradient(135deg, #EFF6FF 0%, #F0FDF4 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .specialist-icon { font-size: 64px; flex-shrink: 0; }
+        .specialist-content h3 {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        .specialist-content p { font-size: 14px; color: var(--gray); line-height: 1.8; }
+
+        /* ─── Flow steps ─────────────────────────────── */
+        .flow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 24px;
+        }
+        .flow-step { text-align: center; padding: 20px; }
+        .step-num {
+            width: 48px; height: 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 18px;
+            margin: 0 auto 16px;
+        }
+        .step-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+        .step-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+        /* ─── Scarcity ───────────────────────────────── */
+        .scarcity-box {
+            background: #FEF3C7;
+            border: 2px solid #FCD34D;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+        .scarcity-title { font-size: 22px; font-weight: 900; color: #92400E; margin-bottom: 10px; }
+        .scarcity-desc { color: #92400E; font-size: 14px; line-height: 1.7; margin-bottom: 10px; }
+        .scarcity-note { font-size: 12px; color: #92400E; opacity: 0.75; }
+
+        /* ─── FAQ ────────────────────────────────────── */
+        .faq-list { display: flex; flex-direction: column; gap: 10px; }
+        .faq-item { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .faq-q {
+            padding: 18px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            transition: background 0.15s;
+        }
+        .faq-q:hover { background: var(--light-gray); }
+        .faq-a {
+            padding: 0 20px;
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.75;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 18px; }
+        .faq-toggle { font-size: 20px; flex-shrink: 0; transition: transform 0.3s; }
+        .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+        /* ─── CTA section ────────────────────────────── */
+        .cta-sec {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 24px;
+        }
+        .cta-title { font-size: clamp(22px, 4vw, 38px); font-weight: 900; margin-bottom: 12px; }
+        .cta-sub { font-size: 15px; opacity: 0.75; margin-bottom: 40px; line-height: 1.7; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-line {
+            background: var(--line-green);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+        }
+        .btn-line:hover {
+            background: #05a847;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(6,199,85,0.4);
+        }
+        .btn-consult {
+            background: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+        }
+        .btn-consult:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(249,115,22,0.4);
+        }
+        .cta-note { margin-top: 24px; font-size: 12px; opacity: 0.45; }
+
+        /* ─── Footer ─────────────────────────────────── */
+        footer {
+            background: #0f172a;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+        }
+
+        /* ─── Responsive ─────────────────────────────── */
+        @media (max-width: 640px) {
+            .features-bar { gap: 20px; }
+            .specialist-box { flex-direction: column; text-align: center; }
+            .bundle-price { font-size: 38px; }
+            .bundle-card { padding: 32px 24px; }
+            .sec { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════ -->
+<nav class="nav">
+    <div class="logo">エルニ<span>.</span></div>
+    <button class="nav-cta" onclick="scrollToCTA()">無料相談する</button>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+    <div class="badge">🔥 月限定○枠受付中</div>
+    <h1 class="hero-title">
+        集客の悩み、<br>
+        <span class="accent-text">プロと一緒に</span>解決しませんか？
+    </h1>
+    <p class="hero-subtitle">
+        LINE・Google・SNSの集客を、<br>
+        専門知識を持つコンサルタントが月額4,980円からサポート。<br>
+        月次コンサル付きで、0から一緒に動けます。
+    </p>
+
+    <div class="hero-price-box">
+        <div class="pl">月額（税抜）</div>
+        <div class="pm">¥4,980<span>/月〜</span></div>
+        <div class="ps">3サービス全部セット ¥16,434（税込）</div>
+    </div>
+
+    <p class="branch-lead">あなたに合ったページをご覧ください</p>
+
+    <div class="branch-buttons">
+        <button class="btn-branch btn-branch-a" onclick="showSection('a')">
+            <div class="btn-branch-label">
+                <span class="btn-branch-tag">これから始める方へ</span>
+                <span>集客を始めたいけど、<br>何からやればいいかわからない</span>
+            </div>
+            <span class="btn-branch-arrow">→</span>
+        </button>
+        <button class="btn-branch btn-branch-b" onclick="showSection('b')">
+            <div class="btn-branch-label">
+                <span class="btn-branch-tag">すでに取り組んでいる方へ</span>
+                <span>今の施策を改善・強化したい</span>
+            </div>
+            <span class="btn-branch-arrow">→</span>
+        </button>
+    </div>
+</section>
+
+<!-- Features Bar -->
+<div class="features-bar" id="features-bar">
+    <div class="fi"><span class="fi-icon">💰</span>月額4,980円〜（税抜）</div>
+    <div class="fi"><span class="fi-icon">🎓</span>専門資格保有コンサル</div>
+    <div class="fi"><span class="fi-icon">🤝</span>月次コンサルサポート付き</div>
+    <div class="fi"><span class="fi-icon">🔒</span>月限定○枠</div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     SECTION A：初心者向け
+════════════════════════════════════════════════ -->
+<div class="section-a" id="section-a">
+
+    <div class="sec" style="padding-bottom: 0;">
+        <div class="sec-inner">
+            <button class="back-btn" onclick="goBack()">← 選択に戻る</button>
+            <div class="sec-tag">これから始める方へ</div>
+            <h2 class="sec-title">何から始めたらいいか、<br>わからなくて大丈夫です。</h2>
+            <p class="sec-sub">
+                「SNS集客って難しそう」「どのツールを使えばいい？」<br>
+                そんなゼロの状態から、プロが丁寧に一緒に整理していきます。
+            </p>
+        </div>
+    </div>
+
+    <div class="sec" style="background: var(--light-gray);">
+        <div class="sec-inner">
+            <div class="sec-tag">よくあるお悩み</div>
+            <h2 class="sec-title">こんな悩み、<br>ありませんか？</h2>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <span class="pain-icon">😰</span>
+                    <p class="pain-text">SNSやLINEで集客したいけど、何から始めればいいのかわからない</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">⏰</span>
+                    <p class="pain-text">本業で忙しく、集客に時間をかける余裕がない</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">💸</span>
+                    <p class="pain-text">高額な代理店には頼めない。でも自分だけでやるのは不安</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">🤷</span>
+                    <p class="pain-text">やってみたけど反応がない。何が悪いのかわからない</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">📱</span>
+                    <p class="pain-text">LINE公式アカウントを作ったけど、活用できていない</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">🔍</span>
+                    <p class="pain-text">Googleでお店が上位に出てくる仕組みが全くわからない</p>
+                </div>
+            </div>
+            <div class="pain-resolution">
+                <h3>全部、一緒に解決できます。</h3>
+                <p>専門家が0から丁寧にサポートするので、<br>知識がなくても、ITが苦手でも大丈夫です。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-inner">
+            <div class="sec-tag">サービス内容</div>
+            <h2 class="sec-title">3つの集客チャネルを<br>まるごとサポート</h2>
+            <p class="sec-sub">それぞれ単体でも、まとめてもご利用いただけます</p>
+
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="svc-icon">💬</div>
+                    <div class="svc-name">LINE公式集客サポート</div>
+                    <p class="svc-desc">LINE公式アカウントの設定から運用まで。友だち増加施策やメッセージ配信の戦略を一緒に作ります。</p>
+                    <div class="svc-price">¥4,980<span>/月（税抜）</span></div>
+                    <ul class="svc-features">
+                        <li>アカウント設定・初期構築サポート</li>
+                        <li>友だち追加施策の立案</li>
+                        <li>配信コンテンツのアドバイス</li>
+                        <li>月次コンサルミーティング</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="svc-icon">🔍</div>
+                    <div class="svc-name">Google集客サポート</div>
+                    <p class="svc-desc">Googleビジネスプロフィールの最適化からMEO対策まで。地域検索での上位表示を目指します。</p>
+                    <div class="svc-price">¥4,980<span>/月（税抜）</span></div>
+                    <ul class="svc-features">
+                        <li>Googleビジネスプロフィール最適化</li>
+                        <li>MEO対策・口コミ戦略</li>
+                        <li>検索上位表示のためのアドバイス</li>
+                        <li>月次コンサルミーティング</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="svc-icon">📱</div>
+                    <div class="svc-name">SNS集客サポート</div>
+                    <p class="svc-desc">Instagram・X・TikTokなど、あなたのビジネスに合ったSNSを選び、戦略から投稿設計まで支援します。</p>
+                    <div class="svc-price">¥4,980<span>/月（税抜）</span></div>
+                    <ul class="svc-features">
+                        <li>SNSチャネル選定・戦略立案</li>
+                        <li>投稿内容・スケジュールの設計</li>
+                        <li>フォロワー増加施策</li>
+                        <li>月次コンサルミーティング</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-badge">✨ おすすめ ─ 3サービスセット</div>
+                <div class="bundle-title">LINE ＋ Google ＋ SNS 全部まとめて</div>
+                <div class="bundle-price">¥16,434</div>
+                <div class="bundle-price-sub">/月（税込）</div>
+                <div class="bundle-note">3チャネル同時運用で集客力が最大化 🚀</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec" style="background: var(--light-gray);">
+        <div class="sec-inner">
+            <div class="sec-tag">サポート体制</div>
+            <h2 class="sec-title">資格を持つコンサルタントが<br>毎月直接サポート</h2>
+            <div class="specialist-box">
+                <div class="specialist-icon">🎓</div>
+                <div class="specialist-content">
+                    <h3>マーケティングの専門資格を保有するコンサルタントが担当します</h3>
+                    <p>
+                        単なるツール操作のサポートではありません。マーケティングの理論と資格に基づいた
+                        知識を持つコンサルタントが、毎月のミーティングであなたのビジネスに合った
+                        具体的なアドバイスを提供します。<br>
+                        「何を聞いていいかわからない」という状態でも、丁寧にヒアリングしながら一緒に考えます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-inner">
+            <div class="sec-tag">ご利用の流れ</div>
+            <h2 class="sec-title">始めてから、<br>こんな流れで進みます</h2>
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="step-num">1</div>
+                    <div class="step-title">無料相談・ヒアリング</div>
+                    <p class="step-desc">現状のビジネスや目標をお聞きします。何も決まっていなくてもOK。</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-num">2</div>
+                    <div class="step-title">プラン確認・スタート</div>
+                    <p class="step-desc">ご要望に合ったサービスをご提案。ご納得いただけたらスタートです。</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-num">3</div>
+                    <div class="step-title">初期設定・環境整備</div>
+                    <p class="step-desc">各チャネルの設定を一緒に進めます。専門的な作業もサポートします。</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-num">4</div>
+                    <div class="step-title">月次コンサルで改善</div>
+                    <p class="step-desc">毎月の定例ミーティングで進捗確認と次のアクションを決めます。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec" style="background: var(--light-gray);">
+        <div class="sec-inner">
+            <div class="scarcity-box">
+                <div class="scarcity-title">⚠️ 月限定○枠のみ受付</div>
+                <p class="scarcity-desc">
+                    一人ひとりに丁寧なサポートを届けるため、受付枠を限定しています。<br>
+                    現在の残り枠をご確認の上、お早めにご連絡ください。
+                </p>
+                <p class="scarcity-note">※ 枠が埋まり次第、次月以降の受付となります</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-inner">
+            <div class="sec-tag">よくある質問</div>
+            <h2 class="sec-title">Q&amp;A</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)">
+                        <span>ITが苦手でも大丈夫ですか？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-a">もちろんです。専門用語を使わず、わかりやすく説明することを心がけています。「スマホの操作に慣れていない」という方でも安心してご利用いただけます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)">
+                        <span>月次コンサルはどんな形式ですか？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-a">ZoomやLINEビデオ通話など、ご都合に合わせた形式で実施します。時間は30〜60分程度で、進捗確認・改善策の相談・次月の計画を一緒に立てます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)">
+                        <span>いつでも解約できますか？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-a">はい、1ヶ月単位でご利用いただけます。長期縛りは設けていませんので、ご状況に合わせてご検討ください。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)">
+                        <span>どんな業種でも対応できますか？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-a">飲食店・美容室・整体院・個人事業主・士業など、さまざまな業種の方にご利用いただいています。まずはお気軽にご相談ください。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)">
+                        <span>1サービスだけでも始められますか？</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-a">はい、LINE・Google・SNSのいずれか1つからスタートいただけます。慣れてきたら追加することも可能です。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-sec" id="cta-a">
+        <h2 class="cta-title">まずは気軽に<br>相談してみませんか？</h2>
+        <p class="cta-sub">無料相談は30分程度。押し売りは一切しません。<br>「何から聞けばいいかわからない」という状態でも大歓迎です。</p>
+        <div class="cta-buttons">
+            <button class="btn-line">💬 LINEで相談する</button>
+            <button class="btn-consult">📅 無料相談を予約する</button>
+        </div>
+        <p class="cta-note">月限定○枠 ／ 現在受付中</p>
+    </div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     SECTION B：経験者向け
+════════════════════════════════════════════════ -->
+<div class="section-b" id="section-b">
+
+    <div class="sec" style="padding-bottom: 0;">
+        <div class="sec-inner">
+            <button class="back-btn" onclick="goBack()">← 選択に戻る</button>
+            <div class="sec-tag">すでに取り組んでいる方へ</div>
+            <h2 class="sec-title">今の施策、<br>本当に効果が出ていますか？</h2>
+            <p class="sec-sub">
+                「なんとなくやっている」状態から、「データと戦略で動く」集客へ。<br>
+                専門家の目で現状を整理し、改善の糸口を一緒に見つけます。
+            </p>
+        </div>
+    </div>
+
+    <div class="sec" style="background: var(--light-gray);">
+        <div class="sec-inner">
+            <div class="sec-tag">こんな方におすすめ</div>
+            <h2 class="sec-title">当てはまることは<br>ありませんか？</h2>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <span class="pain-icon">📊</span>
+                    <p class="pain-text">SNSやLINEを運用しているが、数字の見方・改善の仕方がわからない</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">🔄</span>
+                    <p class="pain-text">集客施策が属人化していて、体系的な戦略が組めていない</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">💡</span>
+                    <p class="pain-text">今やっていることが正しいのか、第三者の目線でチェックしてほしい</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">📈</span>
+                    <p class="pain-text">成果が出ているが、さらに伸ばすための次の手が思いつかない</p>
+                </div>
+            </div>
+            <div class="pain-resolution">
+                <h3>専門家の目線で、現状を整理します。</h3>
+                <p>月次コンサルで定期的にPDCAを回すことで、<br>集客の精度を着実に上げていきます。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-inner">
+            <div class="sec-tag">サービス内容</div>
+            <h2 class="sec-title">3つのチャネルを<br>専門家と一緒に最適化</h2>
+            <p class="sec-sub">現状分析から改善提案まで、月次でPDCAをサポートします</p>
+
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="svc-icon">💬</div>
+                    <div class="svc-name">LINE公式集客サポート</div>
+                    <p class="svc-desc">現状の運用を分析し、配信内容・セグメント・ステップ配信の改善提案を行います。</p>
+                    <div class="svc-price">¥4,980<span>/月（税抜）</span></div>
+                    <ul class="svc-features">
+                        <li>現状分析・課題整理</li>
+                        <li>配信戦略の改善提案</li>
+                        <li>友だち増加施策の強化</li>
+                        <li>月次レビューミーティング</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="svc-icon">🔍</div>
+                    <div class="svc-name">Google集客サポート</div>
+                    <p class="svc-desc">GoogleビジネスプロフィールやローカルSEOを分析し、上位表示強化の戦略を提案します。</p>
+                    <div class="svc-price">¥4,980<span>/月（税抜）</span></div>
+                    <ul class="svc-features">
+                        <li>検索順位・評価の現状分析</li>
+                        <li>MEO改善提案</li>
+                        <li>競合分析・差別化戦略</li>
+                        <li>月次レビューミーティング</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="svc-icon">📱</div>
+                    <div class="svc-name">SNS集客サポート</div>
+                    <p class="svc-desc">各SNSのインサイトを読み解き、エンゲージメント向上・フォロワー増加の改善施策を立案します。</p>
+                    <div class="svc-price">¥4,980<span>/月（税抜）</span></div>
+                    <ul class="svc-features">
+                        <li>インサイト分析・改善提案</li>
+                        <li>コンテンツ戦略の再設計</li>
+                        <li>アルゴリズム対応施策</li>
+                        <li>月次レビューミーティング</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-badge">✨ おすすめ ─ 3サービスセット</div>
+                <div class="bundle-title">LINE ＋ Google ＋ SNS 全部まとめて</div>
+                <div class="bundle-price">¥16,434</div>
+                <div class="bundle-price-sub">/月（税込）</div>
+                <div class="bundle-note">チャネルをまたいだ施策の相乗効果を最大化 🚀</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec" style="background: var(--light-gray);">
+        <div class="sec-inner">
+            <div class="sec-tag">サポート体制</div>
+            <h2 class="sec-title">資格を持つコンサルタントが<br>月次で直接担当</h2>
+            <div class="specialist-box">
+                <div class="specialist-icon">🎓</div>
+                <div class="specialist-content">
+                    <h3>マーケティングの専門資格を保有するコンサルタントが毎月レビュー</h3>
+                    <p>
+                        「感覚」ではなく「理論と実績」に基づいた改善提案で、施策の精度を高めます。
+                        マーケティングの専門資格を保有するコンサルタントが担当し、
+                        毎月の定例ミーティングで現状分析・課題整理・次月のアクションプランを一緒に設計します。<br>
+                        中長期的な戦略設計から日々の運用改善まで、幅広くサポートします。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-inner">
+            <div class="scarcity-box">
+                <div class="scarcity-title">⚠️ 月限定○枠のみ受付</div>
+                <p class="scarcity-desc">
+                    一社一社に向き合った質の高いサポートを維持するため、受付枠を限定しています。<br>
+                    ご興味をお持ちの方はお早めにご連絡ください。
+                </p>
+                <p class="scarcity-note">※ 枠が埋まり次第、次月以降の受付となります</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-sec" id="cta-b">
+        <h2 class="cta-title">現状の施策を<br>一緒に整理しませんか？</h2>
+        <p class="cta-sub">初回は現状のヒアリングから。まずは気軽にご相談ください。<br>「もっと伸ばしたい」という気持ち、一緒に形にします。</p>
+        <div class="cta-buttons">
+            <button class="btn-line">💬 LINEで相談する</button>
+            <button class="btn-consult">📅 無料相談を予約する</button>
+        </div>
+        <p class="cta-note">月限定○枠 ／ 現在受付中</p>
+    </div>
+
+</div>
+
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 0UTL1ER株式会社 All Rights Reserved.</p>
+</footer>
+
+
+<script>
+    function showSection(type) {
+        document.getElementById('hero').style.display = 'none';
+        document.getElementById('features-bar').style.display = 'none';
+        document.getElementById('section-a').classList.remove('active');
+        document.getElementById('section-b').classList.remove('active');
+
+        if (type === 'a') {
+            document.getElementById('section-a').classList.add('active');
+        } else {
+            document.getElementById('section-b').classList.add('active');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBack() {
+        document.getElementById('section-a').classList.remove('active');
+        document.getElementById('section-b').classList.remove('active');
+        document.getElementById('hero').style.display = 'flex';
+        document.getElementById('features-bar').style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToCTA() {
+        const aActive = document.getElementById('section-a').classList.contains('active');
+        const bActive = document.getElementById('section-b').classList.contains('active');
+        if (aActive) {
+            document.getElementById('cta-a').scrollIntoView({ behavior: 'smooth' });
+        } else if (bActive) {
+            document.getElementById('cta-b').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            showSection('a');
+            setTimeout(() => document.getElementById('cta-a').scrollIntoView({ behavior: 'smooth' }), 600);
+        }
+    }
+
+    function toggleFAQ(el) {
+        el.parentElement.classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>
