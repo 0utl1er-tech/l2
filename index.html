@@ -187,6 +187,80 @@
         }
         .fi-icon { font-size: 18px; }
 
+        /* ─── Bonus Bar ──────────────────────────────── */
+        .bonus-bar {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 100%);
+            border-top: 3px solid var(--accent);
+            border-bottom: 3px solid var(--accent);
+            padding: 24px 24px;
+        }
+        .bonus-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .bonus-label {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+        .bonus-items {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .bonus-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .bonus-item strong {
+            color: var(--accent);
+            font-size: 16px;
+        }
+        .bonus-check {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+        .bonus-scarcity {
+            display: inline-block;
+            background: #991B1B;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 900;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .bonus-count {
+            font-size: 22px;
+            color: #FCD34D;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+
         /* ─── Sections A / B toggle ──────────────────── */
         .section-a, .section-b { display: none; }
         .section-a.active, .section-b.active {
@@ -517,7 +591,7 @@
      HERO
 ════════════════════════════════════════════════ -->
 <section class="hero" id="hero">
-    <div class="badge">🔥 月限定○枠受付中</div>
+    <div class="badge">🔥 4月は残り7枠のみ受付中</div>
     <h1 class="hero-title">
         集客の悩み、<br>
         <span class="accent-text">プロと一緒に</span>解決しませんか？
@@ -525,7 +599,7 @@
     <p class="hero-subtitle">
         LINE・Google・SNSの集客を、<br>
         専門知識を持つコンサルタントが月額4,980円からサポート。<br>
-        月次コンサル付きで、0から一緒に動けます。
+        月次レポート付きで、0から一緒に動けます。
     </p>
 
     <div class="hero-price-box">
@@ -558,8 +632,22 @@
 <div class="features-bar" id="features-bar">
     <div class="fi"><span class="fi-icon">💰</span>月額4,980円〜（税抜）</div>
     <div class="fi"><span class="fi-icon">🎓</span>専門資格保有コンサル</div>
-    <div class="fi"><span class="fi-icon">🤝</span>月次コンサルサポート付き</div>
-    <div class="fi"><span class="fi-icon">🔒</span>月限定○枠</div>
+</div>
+<div class="bonus-bar" id="bonus-bar">
+    <div class="bonus-inner">
+        <div class="bonus-label">🎁 今だけの特典</div>
+        <div class="bonus-items">
+            <div class="bonus-item">
+                <span class="bonus-check">✓</span>
+                <span>月次レポート<strong>無料</strong>サポート付き</span>
+            </div>
+            <div class="bonus-item">
+                <span class="bonus-check">✓</span>
+                <span>初回コンサルティング<strong>無料</strong></span>
+            </div>
+        </div>
+        <div class="bonus-scarcity">🔒 4月は残り<span class="bonus-count">7</span>枠のみ</div>
+    </div>
 </div>
 
 
@@ -633,7 +721,7 @@
                         <li>アカウント設定・初期構築サポート</li>
                         <li>友だち追加施策の立案</li>
                         <li>配信コンテンツのアドバイス</li>
-                        <li>月次コンサルミーティング</li>
+                        <li>月次レポート</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -645,7 +733,7 @@
                         <li>Googleビジネスプロフィール最適化</li>
                         <li>MEO対策・口コミ戦略</li>
                         <li>検索上位表示のためのアドバイス</li>
-                        <li>月次コンサルミーティング</li>
+                        <li>月次レポート</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -657,7 +745,7 @@
                         <li>SNSチャネル選定・戦略立案</li>
                         <li>投稿内容・スケジュールの設計</li>
                         <li>フォロワー増加施策</li>
-                        <li>月次コンサルミーティング</li>
+                        <li>月次レポート</li>
                     </ul>
                 </div>
             </div>
@@ -723,7 +811,7 @@
     <div class="sec" style="background: var(--light-gray);">
         <div class="sec-inner">
             <div class="scarcity-box">
-                <div class="scarcity-title">⚠️ 月限定○枠のみ受付</div>
+                <div class="scarcity-title">⚠️ 4月残り7枠のみ受付</div>
                 <p class="scarcity-desc">
                     一人ひとりに丁寧なサポートを届けるため、受付枠を限定しています。<br>
                     現在の残り枠をご確認の上、お早めにご連絡ください。
@@ -754,10 +842,10 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-q" onclick="toggleFAQ(this)">
-                        <span>いつでも解約できますか？</span>
+                        <span>契約期間やプランの詳細を知りたいです</span>
                         <span class="faq-toggle">+</span>
                     </div>
-                    <div class="faq-a">はい、1ヶ月単位でご利用いただけます。長期縛りは設けていませんので、ご状況に合わせてご検討ください。</div>
+                    <div class="faq-a">プランの詳細や契約条件については、無料相談の際にあなたのビジネスの状況に合わせて丁寧にご説明いたします。まずはお気軽にご相談ください。</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q" onclick="toggleFAQ(this)">
@@ -784,7 +872,7 @@
             <button class="btn-line">💬 LINEで相談する</button>
             <button class="btn-consult">📅 無料相談を予約する</button>
         </div>
-        <p class="cta-note">月限定○枠 ／ 現在受付中</p>
+        <p class="cta-note">4月残り7枠 ／ 現在受付中</p>
     </div>
 
 </div>
@@ -913,7 +1001,7 @@
     <div class="sec">
         <div class="sec-inner">
             <div class="scarcity-box">
-                <div class="scarcity-title">⚠️ 月限定○枠のみ受付</div>
+                <div class="scarcity-title">⚠️ 4月残り7枠のみ受付</div>
                 <p class="scarcity-desc">
                     一社一社に向き合った質の高いサポートを維持するため、受付枠を限定しています。<br>
                     ご興味をお持ちの方はお早めにご連絡ください。
@@ -930,7 +1018,7 @@
             <button class="btn-line">💬 LINEで相談する</button>
             <button class="btn-consult">📅 無料相談を予約する</button>
         </div>
-        <p class="cta-note">月限定○枠 ／ 現在受付中</p>
+        <p class="cta-note">4月残り7枠 ／ 現在受付中</p>
     </div>
 
 </div>
